@@ -13,6 +13,9 @@ header {
 
 header h1{
   font-weight: 100;
+  font-family: 'Cormorant Garamond', serif;
+  border-bottom: .5px solid lightgrey;
+  
 }
 
 /**************MAIN**********/
@@ -63,5 +66,11 @@ main img {
 
 /**************FOOTER**********/
 
-
+footer {
+  border-top: 3px solid tomato;
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  margin-top: 3em;
+}
 /*************MEDIA QUERIES************/
