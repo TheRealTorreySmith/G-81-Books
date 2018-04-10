@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title><%= title %></title>
-  </head>
+<head>
+    <% include ./head %>
+    <link rel='stylesheet' href='/stylesheets/sidenav.css' />
+</head>
+
+
   <body>
     <header>
       <% include ./header %>
     </header>
-
+    <main>
+    <% include ./sidenav %>
+    </main>
   </body>
 </html>

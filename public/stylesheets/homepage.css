@@ -13,6 +13,9 @@ header {
 
 header h1{
   font-weight: 100;
+  font-family: 'Cormorant Garamond', serif;
+  border-bottom: .5px solid lightgrey;
+
 }
 
 /**************MAIN**********/
@@ -46,6 +49,7 @@ main img {
 
 .main-content a {
   text-decoration: none;
+  outline: none;
 }
 
 .centered-text {
@@ -63,5 +67,50 @@ main img {
 
 /**************FOOTER**********/
 
+footer {
+  border-top: 3px solid tomato;
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  margin-top: 3em;
+}
 
-/*************MEDIA QUERIES************/
+.top-side-nav-img {
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.top-side-nav-img,
+.bottom-side-nav-img {
+  border-style: ridge;
+  height: 200px;
+  margin-left: 50px;
+  width: 200px;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+}
+
+.side-nav-container div {
+  opacity: .65;
+  transition: .3s;
+}
+
+.side-nav-container div:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.authors-side-nav-img,
+.books-side-nav-img {
+  height: 100%;
+  width: 100%;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
