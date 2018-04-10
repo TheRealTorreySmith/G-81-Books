@@ -25,13 +25,34 @@ main img {
   justify-content: center;
   margin-top: 3em;
 }
+.main-content .row div {
+  opacity: .65;
+  transition: .3s;
+}
+
+.main-content .row div:hover {
+  opacity: 1;
+}
 
 .main-content p {
-  letter-spacing: 3px;
+  letter-spacing: 5px;
+  color: white;
+  font-size: 2em;
 }
 
 .main-content .authors {
   margin-bottom: 3em;
+}
+
+.main-content a {
+  text-decoration: none;
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
   @media(min-width: 768px) {
