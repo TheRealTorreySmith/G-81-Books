@@ -30,6 +30,14 @@ class AuthorService {
         return boom.notFound()
       })
   }
+
+  getAuthorByBook(bookId) {
+    return knex(authorsTable)
+      .select(bookFields)
+      .innerJoin(linksTable, 'authors.id', 'books_authors.author_id')
+      .innerJoin(booksTable, 'books.id', 'books_authors.book_id')
+      .where('books.id', bookId)
+  }
 }
 
 module.exports = AuthorService
