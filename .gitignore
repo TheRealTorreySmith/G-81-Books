@@ -59,3 +59,4 @@ typings/
 
 #Mac Stuff
 DS_Store/
+package-lock.json
