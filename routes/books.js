@@ -23,10 +23,10 @@ const deleteBook = (req, res, next) => {
 }
 
 router.get('/', allBooks)
-router.get('/new', newBook)
 router.get('/:id', oneBook)
-router.get('/:id/edit', editBook)
-router.get('/:id/delete', deleteBook)
+router.post('/new', newBook)
+router.patch('/:id/edit', editBook)
+router.delete('/:id/delete', deleteBook)
 
 
 module.exports = router

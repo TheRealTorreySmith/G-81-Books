@@ -22,10 +22,10 @@ const deleteAuthor = (req, res, next) => {
 }
 
 router.get('/', allAuthors)
-router.get('/new', newAuthor)
 router.get('/:id', oneAuthor)
-router.get('/:id/edit', editAuthor)
-router.get('/:id/delete', deleteAuthor)
+router.post('/new', newAuthor)
+router.patch('/:id/edit', editAuthor)
+router.delete('/:id/delete', deleteAuthor)
 
 
 module.exports = router
