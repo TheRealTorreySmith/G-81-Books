@@ -69,9 +69,9 @@ main img {
 
 footer {
   background-color: tomato;
-  height: 100px;
+  position: absolute;
+  margin-top: 1em;
   width: 100%;
-  margin-top: 3em;
   color: white;
   display: inline-block;
 }
@@ -109,44 +109,4 @@ footer ul {
 
 .fa-github {
   margin-left: 5px;
-}
-
-.top-side-nav-img {
-  margin-bottom: 20px;
-  margin-top: 50px;
-}
-
-.top-side-nav-img,
-.bottom-side-nav-img {
-  border-style: ridge;
-  height: 200px;
-  margin-left: 50px;
-  width: 200px;
-  position: relative;
-  text-align: center;
-  color: white;
-  font-size: 30px;
-}
-
-.side-nav-container div {
-  opacity: .65;
-  transition: .3s;
-}
-
-.side-nav-container div:hover {
-  cursor: pointer;
-  opacity: 1;
-}
-
-.authors-side-nav-img,
-.books-side-nav-img {
-  height: 100%;
-  width: 100%;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
