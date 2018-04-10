@@ -6,10 +6,27 @@ const allBooks = (req, res, next) => {
   res.render('index', { title: 'Books Home Page' })
 }
 
+const newBook = (req, res, next) => {
+  res.render('index', { title: 'New Books Page' })
+}
 
+const oneBook = (req, res, next) => {
+  res.render('index', { title: 'One Book\'s Page' })
+}
 
+const editBook = (req, res, next) => {
+  res.render('index', { title: 'Edit Book Page' })
+}
 
+const deleteBook = (req, res, next) => {
+  res.render('index', { title: 'Delete Book Page' })
+}
 
 router.get('/', allBooks)
+router.get('/new', newBook)
+router.get('/:id', oneBook)
+router.get('/:id/edit', editBook)
+router.get('/:id/delete', deleteBook)
+
 
 module.exports = router

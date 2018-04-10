@@ -6,7 +6,6 @@ const loginPage = (req, res, next) => {
   res.render('index', { title: 'Login Page' })
 }
 
-
 router.get('/', loginPage)
 
 module.exports = router
