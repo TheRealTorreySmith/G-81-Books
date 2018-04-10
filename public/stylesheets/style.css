@@ -1,23 +1,46 @@
+/**************GENERAL STYLES**********/
 body {
-  /* padding: 50px; */
   font-family: 'Lato', sans-serif;
 }
 
+
+/**************HEADERS**********/
 header {
   background-color: tomato;
   color: white;
   padding: 30px;
 }
 
-main img {
-  width: 50%;
-  height: 100%;
-}
-
 header h1{
   font-weight: 100;
 }
 
-a {
-  color: #00B7FF;
+/**************MAIN**********/
+main img {
+  width: 100%;
+  height: 100%;
 }
+
+.main-content .row {
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.main-content p {
+  letter-spacing: 3px;
+}
+
+.main-content .authors {
+  margin-bottom: 3em;
+}
+
+@media(min-width: 450px) {
+  .main-content .authors {
+    margin-bottom: 0;
+  }
+}
+
+/**************FOOTER**********/
+
+
+/*************MEDIA QUERIES************/
