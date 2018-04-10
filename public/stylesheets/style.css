@@ -34,11 +34,11 @@ main img {
   margin-bottom: 3em;
 }
 
-@media(min-width: 450px) {
-  .main-content .authors {
-    margin-bottom: 0;
+  @media(min-width: 768px) {
+    .main-content .authors {
+      margin-bottom: 0;
+    }
   }
-}
 
 /**************FOOTER**********/
 
