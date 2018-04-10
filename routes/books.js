@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 const allBooks = (req, res, next) => {
-  res.render('index', { title: 'Books Home Page' })
+  res.render('books', { title: 'Books Home Page' })
 }
 
 const newBookPage = (req, res, next) => {
@@ -31,7 +31,7 @@ const deleteBookPage = (req, res, next) => {
 }
 
 const deleteBook = (req, res, next) => {
-  
+
 }
 
 router.get('/', allBooks)
