@@ -1,0 +1,72 @@
+/* SIDENAV */
+
+.top-side-nav-img {
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.top-side-nav-img,
+.bottom-side-nav-img {
+  border-style: ridge;
+  height: 200px;
+  margin-left: 50px;
+  width: 200px;
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
+
+.side-nav-container div {
+  opacity: .65;
+  transition: .3s;
+}
+
+.side-nav-container div:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.authors-side-nav-img,
+.books-side-nav-img {
+  height: 100%;
+  width: 100%;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* TABLET DEVICES */
+@media only screen and (min-width: 601px) and (max-width: 1023px) {
+  .no-gutters .row {
+    width: auto;
+    margin: 0px;
+  }
+  .top-side-nav-img,
+  .bottom-side-nav-img {
+    margin: 40px 10px;
+
+  }
+  .side-nav-container div {
+      opacity: 1;
+  }
+}
+
+/* MOBILE DEVICES*/
+@media only screen and (max-width: 600px) {
+  .top-side-nav-img,
+  .bottom-side-nav-img {
+      margin: 0px;
+      border-style: hidden;
+      width: auto;
+      font-size: 25px;
+      letter-spacing: 5px;
+    }
+  .side-nav-container div {
+      opacity: 1;
+    }
+}

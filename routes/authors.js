@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const allAuthors = (req, res, next) => {
-  res.render('index', { title: 'Authors Home Page' })
+  res.render('authors', { title: 'Authors Home Page' })
 }
 
 const newAuthorPage = (req, res, next) => {
