@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const loginPage = (req, res, next) => {
+  res.render('index', { title: 'Login Page' })
+}
 
-module.exports = router;
+
+router.get('/', loginPage)
+
+module.exports = router
