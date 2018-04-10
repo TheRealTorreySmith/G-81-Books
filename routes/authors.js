@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const router = express.Router()
+const knex = require('../knex')
+const { camelizeKeys, decamelizeKeys } = require('humps')
+const boom = require('boom')
 
 const allAuthors = (req, res, next) => {
   res.render('authors', { title: 'Authors Home Page' })
