@@ -6,13 +6,24 @@ const BookService = require('../services/book_service')
 
 describe('database check', () => {
   describe('authors table check', () => {
-    it('should build a authorService instance', () => {
-      const authorService = new AuthorService()
-
-      expect(authorService).to.be.ok
-      expect(authorService).to.be.an.instanceof(AuthorService)
+    let authorService;
+    beforeEach((done) => {
+      authorService = new AuthorService()
     })
 
+    it('should build a authorService instance', () => {
+      expect(authorService).to.be.ok
+      expect(authorService).to.be.an.instanceof(AuthorService)
+
+      authorService.getAuthors()
+        .then((rows) => {
+          //console.log(rows);
+          done()
+        })
+        .catch((err) => {
+        })
+
+    })
   })
 
   describe('books table check', () => {

@@ -35,8 +35,8 @@ class BookService {
   getBookByAuthor(authorId) {
     return knex(booksTable)
       .select(bookFields)
-      .innerJoin(linksTable, 'books.id', 'books_authors.author_id')
-      .innerJoin(authorsTable, 'authors.id', 'books_authors.book_id')
+      .innerJoin(linksTable, 'books.id', 'books_authors.book_id')
+      .innerJoin(authorsTable, 'authors.id', 'books_authors.author_id')
       .where('authors.id', authorId)
   }
 }
