@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <% include ./head %>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <% include ./header %>
+    </header>
+    <nav>
+
+    </nav>
+    <main class='container-fluid'>
+      <div class="row">
+        <img src="/images/authorsphoto.jpg" class=" col-sm-12 col-md-5 rounded float-left" alt="Photo of an author at the typewriter">
+        <img src="/images/booksphoto.jpg" class=" col-sm-12 col-md-5 rounded float-right" alt="Photo of some books on a table">
+      </div>
+    </main>
   </body>
 </html>
