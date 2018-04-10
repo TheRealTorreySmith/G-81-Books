@@ -1,6 +1,6 @@
 
 exports.up = (knex, Promise) => {
-  knex.schema.createTable('books_authors', (table) => {
+  return knex.schema.createTable('books_authors', (table) => {
     table.increments()
     table.integer('book_id').notNullable()
     table.foreign('book_id').references('id').inTable('books').onDelete('cascade')
@@ -11,5 +11,5 @@ exports.up = (knex, Promise) => {
 }
 
 exports.down = (knex, Promise) => {
-  knex.schema.dropTable('books_authors')
+  return knex.schema.dropTable('books_authors')
 }

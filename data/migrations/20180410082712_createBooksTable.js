@@ -1,6 +1,6 @@
 
 exports.up = (knex, Promise) => {
-  knex.schema.createTable('books', (table) => {
+  return knex.schema.createTable('books', (table) => {
     table.increments()
     table.varchar('title', 255).notNullable().defaultTo('')
     table.varchar('genre', 255).notNullable().defaultTo('')
@@ -11,5 +11,5 @@ exports.up = (knex, Promise) => {
 }
 
 exports.down = (knex, Promise) => {
-  knex.schema.dropTable('books')
+  return knex.schema.dropTable('books')
 }
