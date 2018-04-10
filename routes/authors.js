@@ -13,7 +13,32 @@ const newAuthorPage = (req, res, next) => {
 }
 
 const newAuthor = (req, res, next) => {
-
+  const body = req.body
+  const author = {
+    first_name: body.firstName,
+    last_name: body.lastName,
+    biography: body.biography,
+    portrait_url: body.portraitUrl
+  }
+  const errors = {
+    first_name: boom.badRequest('First name must not be blank'),
+    last_name: boom.badRequest('Last Name must not be blank'),
+    biography:  boom.badRequest('Biography must not be blank'),
+    portrait_url: boom.badRequest('Portrait URL must not be blank')
+  }
+  for (let key in author) {
+    if (!author[key]) {
+      next(errors[key])
+    }
+  }
+  knex('authors')
+    .insert(decamelizeKeys(author), '*')
+    .then(([data]) => {
+      res.status(200).send(camelizeKeys(data))
+    })
+    .catch(err => {
+      next(err)
+    })
 }
 
 const oneAuthor = (req, res, next) => {
@@ -25,7 +50,34 @@ const editAuthorPage = (req, res, next) => {
 }
 
 const editAuthor = (req, res, next) => {
-
+  const body = req.body
+  const { id } = req.params
+  if(isNaN(id)) next(boom.notFound())
+  const editedAuthor = {
+    first_name: body.firstName,
+    last_name: body.lastName,
+    biography: body.biography,
+    portrait_url: body.portraitUrl
+  }
+  knex('authors')
+  .where('id', id)
+  .then(author => {
+    if(author.length <= 0) next(boom.notFound())
+    knex('author')
+      .where('id', id)
+      .limit(1)
+      .update(editedAuthor)
+      .returning('*')
+      .then(([data]) => {
+        res.status(200).send(camelizeKeys(data))
+      })
+      .catch(err => {
+        next(boom.notFound())
+      })
+    })
+  .catch(err => {
+    next(boom.notFound())
+  })
 }
 
 const deleteAuthorPage = (req, res, next) => {
