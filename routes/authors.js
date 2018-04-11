@@ -4,9 +4,13 @@ const knex = require('../knex')
 const boom = require('boom')
 
 const allAuthors = (req, res, next) => {
-  res.render('authors', { title: 'Authors Home Page' })
+  knex('authors').then((results) => {
+    res.render('authors', {
+      title: 'Authors Home Page'
+      authorList: results
+    })
+  })
 }
-
 
 const newAuthorPage = (req, res, next) => {
   res.render('authors', { title: 'New Authors Page' })
@@ -57,6 +61,9 @@ const newAuthor = (req, res, next) => {
 
 const oneAuthor = (req, res, next) => {
   res.render('authors', { title: 'One Author\'s Page' })
+  return knex('authors')
+  .where('id', req.params.id)
+  .first()
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -99,7 +106,10 @@ const deleteAuthorPage = (req, res, next) => {
 }
 
 const deleteAuthor = (req, res, next) => {
-
+  return knex('authors')
+  .where('id', req.params.id)
+  .first()
+  .del()
 }
 
 
