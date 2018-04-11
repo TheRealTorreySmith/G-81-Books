@@ -13,47 +13,59 @@ class AuthorService {
   }
 
   getAuthorByName(firstName, lastName) {
-    return knex(authorsTable)
-      .where({
-        first_name: firstName,
-        last_name: lastName
-      })
+    if (firstName && lastName) {
+      return knex(authorsTable)
+        .where({
+          first_name: firstName,
+          last_name: lastName
+        })
+    }
+    throw boom.badRequest('First and last names are required')
   }
 
   getAuthorById(id) {
-    return knex(authorsTable)
-      .where('id', id)
-      .then((rows) => {
-        if (rows.length > 0) {
-          return rows[0]
-        }
-        throw boom.notFound()
-      })
+    if (id) {
+      return knex(authorsTable)
+        .where('id', id)
+        .then((rows) => {
+          if (rows.length > 0) {
+            return rows[0]
+          }
+          throw boom.notFound()
+        })
+    }
+    throw boom.badRequest('Author id is not required')
   }
 
   getAuthorByBook(bookId) {
-    return knex(authorsTable)
-      .select(bookFields)
-      .innerJoin(linksTable, 'authors.id', 'books_authors.author_id')
-      .innerJoin(booksTable, 'books.id', 'books_authors.book_id')
-      .where('books.id', bookId)
+    if (id) {
+      return knex(authorsTable)
+        .select(bookFields)
+        .innerJoin(linksTable, 'authors.id', 'books_authors.author_id')
+        .innerJoin(booksTable, 'books.id', 'books_authors.book_id')
+        .where('books.id', bookId)
+    }
+    throw boom.badRequest('Book id is not required')
   }
 
   insertAuthor(author) {
-    return knex(authorsTable)
-      .insert(author)
-      .returning('*')
-      .then((rows) => {
-        if (rows.length > 0) {
-          return rows[0]
-        }
-        else {
-          throw boom.notFound()
-        }
-      })
-      .catch((err) => {
-        throw boom.badImplementation()
-      })
+    if (author.first_name && author.last_name) {
+      return knex(authorsTable)
+        .insert(author)
+        .returning('*')
+        .then((rows) => {
+          if (rows.length > 0) {
+            return rows[0]
+          }
+          else {
+            throw boom.notFound()
+          }
+        })
+        .catch((err) => {
+          throw boom.badImplementation()
+        })
+    }
+    throw boom.badRequest('First and last names are required')
   }
 
   updateAuthor(author) {
@@ -74,21 +86,24 @@ class AuthorService {
   }
 
   deleteAuthorById(id) {
-    return knex(authorsTable)
-      .del()
-      .where('id', id)
-      .returning('*')
-      .then((rows) => {
-        if (rows.length > 0) {
-          return rows[0]
-        }
-        else {
-          throw boom.notFound()
-        }
-      })
-      .catch((err) => {
-        throw boom.badImplementation()
-      })
+    if (id) {
+      return knex(authorsTable)
+        .del()
+        .where('id', id)
+        .returning('*')
+        .then((rows) => {
+          if (rows.length > 0) {
+            return rows[0]
+          }
+          else {
+            throw boom.notFound()
+          }
+        })
+        .catch((err) => {
+          throw boom.badImplementation()
+        })
+    }
+    throw boom.badRequest('Author id is not required')
   }
 }
 
