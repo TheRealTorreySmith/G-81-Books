@@ -38,6 +38,58 @@ class AuthorService {
       .innerJoin(booksTable, 'books.id', 'books_authors.book_id')
       .where('books.id', bookId)
   }
+
+  insertAuthor(author) {
+    return knex(authorsTable)
+      .insert(author)
+      .returning('*')
+      .then((rows) => {
+        if (rows.length > 0) {
+          return rows[0]
+        }
+        else {
+          return boom.notFound()
+        }
+      })
+      .catch((err) => {
+        return boom.badImplementation()
+      })
+  }
+
+  updateAuthor(author) {
+    return knex(authorsTable)
+      .update(author)
+      .returning('*')
+      .then((rows) => {
+        if (rows.length > 0) {
+          return rows[0]
+        }
+        else {
+          return boom.notFound()
+        }
+      })
+      .catch((err) => {
+        return boom.badImplementation()
+      })
+  }
+
+  deleteAuthorById(id) {
+    return knex(authorsTable)
+      .del()
+      .where('id', id)
+      .returning('*')
+      .then((rows) => {
+        if (rows.length > 0) {
+          return rows[0]
+        }
+        else {
+          return boom.notFound()
+        }
+      })
+      .catch((err) => {
+        return boom.badImplementation()
+      })
+  }
 }
 
 module.exports = AuthorService
