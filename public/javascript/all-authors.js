@@ -1,6 +1,6 @@
 
 
-$('main__section').append(`
+$('#main__section').append(`
   <img class="portrait" alt="author-image">
   <article class="top-section">
     <h2>Author Name</h2>
