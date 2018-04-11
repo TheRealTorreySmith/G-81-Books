@@ -7,7 +7,7 @@ const allBooks = (req, res, next) => {
 }
 
 const newBookPage = (req, res, next) => {
-  res.render('index', { title: 'New Books Page' })
+  res.render('addBook', { title: 'New Books Page' })
 }
 
 const newBook = (req, res, next) => {
