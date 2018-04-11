@@ -1,0 +1,26 @@
+form input, textarea{
+  display: block;
+  border: none;
+  border-bottom: 1px solid grey;
+  width: 60%;
+  margin: .6em 0;
+}
+
+form input:focus, textarea:focus{
+  outline: none;
+}
+
+.form-container {
+  margin-top: 1em;
+  margin-left: 20%;
+}
+
+@media(min-width:601px){
+  .form-container {
+    margin-left: 0;
+  }
+}
+
+.btn {
+  margin-top: 1em;
+}
