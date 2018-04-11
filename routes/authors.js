@@ -9,7 +9,7 @@ const allAuthors = (req, res, next) => {
   authorService.getAuthors()
   .then((results) => {
     res.render('authors', {
-      title: 'Authors Home Page'
+      title: 'Authors Home Page',
       authorList: results
     })
   })

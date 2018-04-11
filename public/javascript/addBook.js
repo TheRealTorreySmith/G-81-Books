@@ -1,9 +1,6 @@
-// 
-// $(document).ready(() => {
-//         const allAuthors = $.get('/authors').done(authors => {
-//           console.log(authors)
-//           authors.map(author => {
-//               $('#authors-container').append(`<li>${author.first_name}</li>`)
-//           })
-//         })
-// })
+
+$(document).ready(() => {
+        const selectedAuthor = $('#author-select-list').find(":selected").text();
+        if()
+        $('authors-container').append(`<li>${selectedAuthor}</li>`)
+})
