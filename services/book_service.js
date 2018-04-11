@@ -28,7 +28,7 @@ class BookService {
         if (rows.length > 0) {
           return rows[0]
         }
-        return boom.notFound()
+        throw boom.notFound()
       })
   }
 
@@ -49,11 +49,11 @@ class BookService {
           return rows[0]
         }
         else {
-          return boom.notFound()
+          throw boom.notFound()
         }
       })
       .catch((err) => {
-        return boom.badImplementation()
+        throw boom.badImplementation()
       })
   }
 
@@ -66,11 +66,11 @@ class BookService {
           return rows[0]
         }
         else {
-          return boom.notFound()
+          throw boom.notFound()
         }
       })
       .catch((err) => {
-        return boom.badImplementation()
+        throw boom.badImplementation()
       })
   }
 
@@ -84,11 +84,11 @@ class BookService {
           return rows[0]
         }
         else {
-          return boom.notFound()
+          throw boom.notFound()
         }
       })
       .catch((err) => {
-        return boom.badImplementation()
+        throw boom.badImplementation()
       })
   }
 }
