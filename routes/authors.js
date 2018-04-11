@@ -16,6 +16,7 @@ const allAuthors = (req, res, next) => {
 }
 
 const newAuthorPage = (req, res, next) => {
+
   //create a form in .ejs and require it here
   res.render('newAuthorPage', { title: 'New Authors Page' })
 }
@@ -43,11 +44,12 @@ const newAuthor = (req, res, next) => {
     })
 }
 
-const oneAuthor = (req, res, next) => {
-  res.render('authors', { title: 'One Author\'s Page' })
+
+
   return knex('authors')
   .where('id', req.params.id)
   .first()
+
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -72,8 +74,8 @@ const editAuthor = (req, res, next) => {
       })
 }
 
-const deleteAuthorPage = (req, res, next) => {
-  //create .ejs
+
+
   res.render('authors', { title: 'Delete Author Page' })
 }
 

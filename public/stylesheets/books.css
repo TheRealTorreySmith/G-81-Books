@@ -1,0 +1,83 @@
+.all-books-container {
+  margin-top: 50px;
+  margin-left: 100px;
+  height: 100%;
+}
+
+.book-cover {
+  height: 200px;
+}
+
+.col-md-9 {
+  height: 200px;
+}
+
+.row .book-row{
+  height: 53px;
+}
+
+.book {
+  margin: auto 0px auto 10px;
+  float: left;
+  font-size: 24px;
+}
+
+.remove-button {
+  height: 40px;
+  width: 60px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.edit-button {
+  height: 40px;
+  width: 60px;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+.row .author-row {
+  height: 35px;
+}
+
+.authors {
+  margin: auto 0px auto 10px;
+  float: left;
+}
+
+.row .genre-row {
+  height: 35px;
+}
+
+.genre {
+  margin: auto 0px auto 10px;
+  float: left;
+}
+
+.row .definition-row {
+  height: auto;
+}
+
+.definition {
+  margin: 5px 0px auto 10px;
+  float: left;
+}
+
+.cover-url {
+  margin: auto;
+}
+
+.cover-url {
+  object-fit: contain;
+}
+
+.cover-url-border {
+  height: 90%;
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.spacer {
+  height:100px;
+}

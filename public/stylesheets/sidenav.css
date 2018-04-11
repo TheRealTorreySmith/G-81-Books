@@ -14,7 +14,7 @@
   position: relative;
   text-align: center;
   color: white;
-  font-size: 16px;
+  font-size: 30px;
 }
 
 .side-nav-container div {
@@ -41,7 +41,7 @@
 }
 
 /* TABLET DEVICES */
-@media only screen and (min-width: 601px) and (max-width: 1023px) {
+ @media only screen and (min-width: 601px) and (max-width: 1023px) {
   .no-gutters .row {
     width: auto;
     margin: 0px;
