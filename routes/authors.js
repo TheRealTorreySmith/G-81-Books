@@ -3,9 +3,12 @@ const router = express.Router()
 const knex = require('../knex')
 const { camelizeKeys, decamelizeKeys } = require('humps')
 const boom = require('boom')
+const BookService = require('../services/book_service')
+const AuthorService = require('../services/author_service')
+const authorService = new AuthorService()
 
 const allAuthors = (req, res, next) => {
-  res.render('authors', { title: 'Authors Home Page' })
+    res.render('authors', { title: 'All authors page' })
 }
 //
 // 'use strict';
