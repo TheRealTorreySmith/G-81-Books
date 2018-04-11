@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <% include ./head %>
+    <link rel='stylesheet' href='/stylesheets/sidenav.css' />
+    <link rel='stylesheet' href='/stylesheets/addBook.css' />
+    <script src='/javascript/addBook.js'></script>
+</head>
+
+
+<body>
+  <header>
+    <% include ./header %>
+  </header>
+  <main>
+
+
+      <div class='row'>
+        <div class="col-sm-12 col-md-3">
+            <% include ./sidenav %>
+        </div>
+        <div class='form-container col-sm-12 col-md-9'>
+          <form class="form" action="/books/new" method="post">
+              <legend><h3>ADD A BOOK</h3></legend>
+
+              <label for="title">TITLE:</label>
+              <input type="text" id='title' name="title" required>
+
+              <label for="genre">GENRE:</label>
+              <input type="text" id="genre" name="genre" required>
+
+              <label for="cover_url">COVER URL:</label>
+              <input type="text" id="cover_url" name="cover_url">
+
+              <label for="description">DESCRIPTION:</label>
+              <textarea type="text" id="description" name="description"></textarea>
+
+              <label for="authors">AUTHORS:</label>
+              <ul id='authors-container'>
+                <% for (let i = 0; i < authorList.length; i++){ %>
+                 <li><%= authorList[i].first_name %> </li>
+                <% } %>
+              </ul>
+              <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
+              <br>
+              <input type="submit" id='submit-button' class='btn btn-success' value='Add to Library'>
+            </form>
+        </div>
+  </main>
+  <footer>
+    <% include ./footer %>
+  </footer>
+</body>
+
+</html>

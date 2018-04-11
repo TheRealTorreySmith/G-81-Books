@@ -1,6 +1,8 @@
+
 const express = require('express');
 const knex = require('../knex')
 const router = express.Router();
+
 
 /* GET home page. */
 const allBooks = (req, res, next) => {
@@ -15,11 +17,17 @@ const allBooks = (req, res, next) => {
 }
 
 const newBookPage = (req, res, next) => {
+
   res.render('books', { title: 'New Books Page' })
+
 }
 
 const newBook = (req, res, next) => {
-
+  const { title , genre, cover_url, description } = req.body
+  // console.log(title , genre, cover_url, description)
+  // const bookService = new BookService()
+  // bookService.insertBook({ title , genre, cover_url, description })
+  res.redirect('/new')
 }
 
 const oneBook = (req, res, next) => {

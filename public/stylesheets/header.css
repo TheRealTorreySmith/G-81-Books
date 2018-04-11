@@ -1,0 +1,28 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+/**************HEADERS**********/
+header {
+  background-color: tomato;
+  color: white;
+  padding: 30px;
+}
+
+header h1{
+  font-weight: 100;
+  font-family: 'Cormorant Garamond', serif;
+  border-bottom: .5px solid lightgrey;
+}
+
+header h1 a {
+  color: white;
+  text-decoration: none;
+  transition: .3s;
+}
+
+header h1 a:hover {
+  color: white;
+  text-decoration: none;
+  opacity: .5;
+}
