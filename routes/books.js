@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const BookService = require('../services/book_service')
+const AuthorService = require('../services/author_service')
+const authorService = new AuthorService()
 
 /* GET home page. */
 const allBooks = (req, res, next) => {
@@ -7,11 +10,20 @@ const allBooks = (req, res, next) => {
 }
 
 const newBookPage = (req, res, next) => {
-  res.render('addBook', { title: 'New Books Page' })
+  const allAuthors = authorService.getAuthors().then(result => {
+      res.render('addBook', {
+        title: 'New Books Page',
+        authorList: result
+      })
+  })
 }
 
 const newBook = (req, res, next) => {
-
+  const { title , genre, cover_url, description } = req.body
+  // console.log(title , genre, cover_url, description)
+  // const bookService = new BookService()
+  // bookService.insertBook({ title , genre, cover_url, description })
+  res.redirect('/new')
 }
 
 const oneBook = (req, res, next) => {
