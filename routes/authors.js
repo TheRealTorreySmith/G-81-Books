@@ -9,7 +9,7 @@ const allAuthors = (req, res, next) => {
 }
 
 const newAuthorPage = (req, res, next) => {
-  res.render('index', { title: 'New Authors Page' })
+  res.render('authors', { title: 'New Authors Page' })
 }
 
 const newAuthor = (req, res, next) => {
@@ -31,10 +31,24 @@ const newAuthor = (req, res, next) => {
       next(errors[key])
     }
   }
-  knex('authors')
-    .insert(decamelizeKeys(author), '*')
-    .then(([data]) => {
-      res.status(200).send(camelizeKeys(data))
+  knex ('authors')
+    .where({first_name: body.firstName, last_name:body.lastName})
+    .first()
+    .then(([result]) => {
+      if(result) {
+        next(Boom.conflict('Author already exists'))
+      } else {
+        knex('authors')
+          .insert(decamelizeKeys(author), '*')
+          .then(([data]) => {
+            //should render success status message
+            res.render('authors', { title: 'New Authors Page' })
+          })
+          .catch(err => {
+            next(err)
+          })
+      }
+
     })
     .catch(err => {
       next(err)
@@ -42,11 +56,11 @@ const newAuthor = (req, res, next) => {
 }
 
 const oneAuthor = (req, res, next) => {
-  res.render('index', { title: 'One Author\'s Page' })
+  res.render('authors', { title: 'One Author\'s Page' })
 }
 
 const editAuthorPage = (req, res, next) => {
-  res.render('index', { title: 'Edit Author Page' })
+  res.render('authors', { title: 'Edit Author Page' })
 }
 
 const editAuthor = (req, res, next) => {
@@ -81,7 +95,7 @@ const editAuthor = (req, res, next) => {
 }
 
 const deleteAuthorPage = (req, res, next) => {
-  res.render('index', { title: 'Delete Author Page' })
+  res.render('authors', { title: 'Delete Author Page' })
 }
 
 const deleteAuthor = (req, res, next) => {
