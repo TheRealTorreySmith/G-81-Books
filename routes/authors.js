@@ -6,7 +6,7 @@ const allAuthors = (req, res, next) => {
 }
 
 const newAuthorPage = (req, res, next) => {
-  res.render('index', { title: 'New Authors Page' })
+  res.render('authors', { title: 'New Authors Page' })
 }
 
 const newAuthor = (req, res, next) => {
@@ -14,11 +14,11 @@ const newAuthor = (req, res, next) => {
 }
 
 const oneAuthor = (req, res, next) => {
-  res.render('index', { title: 'One Author\'s Page' })
+  res.render('authors', { title: 'One Author\'s Page' })
 }
 
 const editAuthorPage = (req, res, next) => {
-  res.render('index', { title: 'Edit Author Page' })
+  res.render('authors', { title: 'Edit Author Page' })
 }
 
 const editAuthor = (req, res, next) => {
@@ -26,7 +26,7 @@ const editAuthor = (req, res, next) => {
 }
 
 const deleteAuthorPage = (req, res, next) => {
-  res.render('index', { title: 'Delete Author Page' })
+  res.render('authors', { title: 'Delete Author Page' })
 }
 
 const deleteAuthor = (req, res, next) => {

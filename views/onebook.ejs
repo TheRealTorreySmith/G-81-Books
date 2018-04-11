@@ -1,0 +1,25 @@
+<div class="row justify-content-md-center">
+  <div class="book-cover col col-lg-3">
+    <div class="cover-url-border">
+      <img class="cover-url" src= "<%= allBooks[i].cover_url %>" alt="cover-url">
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row book-row">
+      <p id="book-one" class="book"><%= allBooks[i].title %></p>
+      <button type="submit" class="edit-button btn btn-primary" >Edit</button>
+      <button type="button" class="btn btn-sm btn-danger remove-button">Delete</button>
+    </div>
+    <div class="row author-row">
+      <p class="authors">Author</p>
+    </div>
+    <div class="row genre-row">
+      <p class="genre"><%=allBooks[i].genre%></p>
+    </div>
+    <div class="row definition-row">
+      <p class="definition"><%= allBooks[i].description %></p>
+    </div>
+  </div>
+</div>
+<div class="spacer">
+</div>
