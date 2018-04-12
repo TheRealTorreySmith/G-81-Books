@@ -9,4 +9,7 @@ exports.seed = (knex, Promise) => {
         return knex('authors').insert(author)
       }))
     })
+    .then(() => {
+      return knex.raw(`SELECT setval('authors_id_seq', (SELECT MAX(id) FROM authors));`)
+    })
 }
