@@ -50,53 +50,41 @@ class AuthorService {
 
   insertAuthor(author) {
     if (author.first_name && author.last_name) {
-      // return knex(authorsTable)
-      //   .where({
-      //     'first_name': author.first_name,
-      //     'last_name': author.last_name
-      //   })
-      //   .first()
-      //   .then((data) => {
-      //     if (data) {
-      //       console.log("conflict")
-      //       throw boom.conflict(
-      //         'Author "' + author.first_name + ' ' +
-      //         author.last_name + '" already exists')
-      //     } else {
-      //       return knex(authorsTable)
-      //         .insert(author)
-      //         .returning('*')
-      //         .then((rows) => {
-      //           if (rows.length > 0) {
-      //             return rows[0]
-      //           } else {
-      //             throw boom.notFound()
-      //           }
-      //         }).catch((err) => {
-      //           console.log("boom 1", err)
-      //           throw boom.badImplementation()
-      //         })
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log("boom 2", err)
-      //     throw err.isBoom ? err :
-      //       boom.badImplementation()
-      //   })
-
       return knex(authorsTable)
-        .insert(author)
-        .returning('*')
-        .then((rows) => {
-          if (rows.length > 0) {
-            return rows[0]
-          } else {
-            throw boom.notFound()
-          }
-        }).catch((err) => {
-          console.log("boom 1", err)
-          throw boom.badImplementation()
+        .where({
+          'first_name': author.first_name,
+          'last_name': author.last_name
         })
+        .first()
+        .then((data) => {
+          if (data) {
+            console.log("conflict")
+            throw boom.conflict(
+              'Author "' + author.first_name + ' ' +
+              author.last_name + '" already exists')
+          } else {
+            return knex(authorsTable)
+              .insert(author)
+              .returning('*')
+              .then((rows) => {
+                if (rows.length > 0) {
+                  return rows[0]
+                } else {
+                  throw boom.notFound()
+                }
+              }).catch((err) => {
+                console.log("boom 1", err)
+                throw boom.badImplementation()
+              })
+          }
+        })
+        .catch((err) => {
+          console.log("boom 2", err)
+          throw err.isBoom ? err :
+            boom.badImplementation()
+        })
+
+
     }
     console.log("boom badRequest")
     throw boom.badRequest('First and last names are required')
