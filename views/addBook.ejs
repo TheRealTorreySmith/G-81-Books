@@ -2,10 +2,10 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <% include ./head %>
+    <% include ./head %>  
     <link rel='stylesheet' href='/stylesheets/sidenav.css' />
     <link rel='stylesheet' href='/stylesheets/addBook.css' />
-    <script src='/javascript/addBook.js'></script>
+    <script src="/spop-0.1.3/dist/spop.js"></script>  
 </head>
 
 
@@ -29,21 +29,22 @@
               <input type="text" id="genre" name="genre" required>
 
               <label for="cover_url">COVER URL:</label>
-              <input type="text" id="cover_url" name="cover_url">
+              <input required type="text" id="cover_url" name="cover_url">
 
               <label for="description">DESCRIPTION:</label>
-              <textarea type="text" id="description" name="description"></textarea>
+              <textarea require type="text" id="description" name="description"></textarea>
 
-              <label for="authors">AUTHORS:</label>
-              <ul id='authors-container'></ul>
-                <select id='authors-select-list'>
-                  <option value=""></option>
-                  <% for (let i = 0; i < authorList.length; i++){ %>
-                   <option value="<% authorList[i].last_name %>"> <%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
-                  <% } %>
-                </select>
-                <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
-                <button id='clear-authors-button' class= 'btn btn-warning'>Clear Authors</button>
+              <label for="authors-container">AUTHORS:</label>
+              <textarea require type="text"  id="authors-container" name="authors" readonly></textarea>
+
+              <select id='authors-select-list'>
+                <option value=""></option>
+                <% for (let i = 0; i < authorList.length; i++){ %>
+                 <option value="<% authorList[i].last_name %>"> <%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
+                <% } %>
+              </select>
+              <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
+              <button id='clear-authors-button' class= 'btn btn-warning'>Clear Authors</button>
               <br>
               <input type="submit" id='submit-button' class='btn btn-success' value='Add to Library'>
             </form>

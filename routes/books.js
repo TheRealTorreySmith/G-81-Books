@@ -1,6 +1,7 @@
 const BookService = require('../services/book_service')
 const AuthorService = require('../services/author_service')
 const authorService = new AuthorService()
+const bookService = new BookService()
 const express = require('express');
 const knex = require('../knex')
 const router = express.Router();
@@ -31,8 +32,24 @@ const newBookPage = (req, res, next) => {
 }
 
 const newBook = (req, res, next) => {
-  const { title , genre, cover_url, description } = req.body
-  res.redirect('/new')
+  const { title, genre, description, cover_url } = req.body
+  const authorsArray = req.body.authors.split('  ').map(x => x.trim())
+
+  bookService.insertBook({
+    title,
+    genre,
+    description,
+    cover_url
+  }).then(result => {
+    res.send(result)
+  })
+
+  authorService.getAuthors().then(result => {
+  res.render('addBook', {
+    title: 'New Books Page',
+    authorList: result
+    })
+  })
 }
 
 const oneBook = (req, res, next) => {

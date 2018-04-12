@@ -1,4 +1,5 @@
 const knex = require('../knex')
+const boom = require('boom')
 const {
   authorsTable,
   booksTable,
