@@ -41,7 +41,7 @@ const newAuthor = (req, res, next) => {
     .catch(err => {
       res.status(409).json({status: err.message})
     })
- })
+ 
 }
 
 const oneAuthor = (req, res, next) => {
