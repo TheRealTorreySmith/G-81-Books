@@ -93,7 +93,7 @@ router.get('/:id/edit', editAuthorPage)
 router.get('/:id/delete', deleteAuthorPage)
 router.post('/new', newAuthor)
 router.patch('/:id/edit', editAuthor)
-// router.delete('/:id/delete', deleteAuthor)
+// router.delete('/:id/delete', deleteAuthor) 
 
 
 module.exports = router

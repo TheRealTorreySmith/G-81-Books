@@ -35,15 +35,15 @@
               <textarea type="text" id="description" name="description"></textarea>
 
               <label for="authors">AUTHORS:</label>
-              <ul id='authors-container'>
-
-              </ul>
-              <select id='authors-select-list'>
-                <% for (let i = 0; i < authorList.length; i++){ %>
-                 <option><%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
-                <% } %>
-              </select>
-              <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
+              <ul id='authors-container'></ul>
+                <select id='authors-select-list'>
+                  <option value=""></option>
+                  <% for (let i = 0; i < authorList.length; i++){ %>
+                   <option value="<% authorList[i].last_name %>"> <%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
+                  <% } %>
+                </select>
+                <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
+                <button id='clear-authors-button' class= 'btn btn-warning'>Clear Authors</button>
               <br>
               <input type="submit" id='submit-button' class='btn btn-success' value='Add to Library'>
             </form>

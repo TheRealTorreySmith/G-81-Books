@@ -29,6 +29,11 @@ form input:focus, textarea:focus{
   }
 }
 
-.btn {
-  margin-top: 1em;
+#submit-button {
+  margin-top: 2em;
+}
+
+#authors-container {
+  padding-left: 0;
+  list-style: none;
 }
