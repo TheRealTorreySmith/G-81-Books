@@ -51,18 +51,34 @@ class AuthorService {
   insertAuthor(author) {
     if (author.first_name && author.last_name) {
       return knex(authorsTable)
-        .insert(author)
-        .returning('*')
-        .then((rows) => {
-          if (rows.length > 0) {
-            return rows[0]
-          }
-          else {
-            throw boom.notFound()
+        .where({
+          'first_name': author.first_name,
+          'last_name': author.last_name
+        })
+        .first()
+        .then((data) => {
+          if (data) {
+            throw boom.conflict(
+              'Author "' + author.first_name + ' ' +
+              author.last_name + '" already exists')
+          } else {
+            return knex(authorsTable)
+              .insert(author)
+              .returning('*')
+              .then((rows) => {
+                if (rows.length > 0) {
+                  return rows[0]
+                } else {
+                  throw boom.notFound()
+                }
+              }).catch((err) => {
+                throw boom.badImplementation()
+              })
           }
         })
         .catch((err) => {
-          throw boom.badImplementation()
+          throw err.isBoom ? err :
+            boom.badImplementation()
         })
     }
     throw boom.badRequest('First and last names are required')
@@ -75,8 +91,7 @@ class AuthorService {
       .then((rows) => {
         if (rows.length > 0) {
           return rows[0]
-        }
-        else {
+        } else {
           throw boom.notFound()
         }
       })
@@ -94,8 +109,7 @@ class AuthorService {
         .then((rows) => {
           if (rows.length > 0) {
             return rows[0]
-          }
-          else {
+          } else {
             throw boom.notFound()
           }
         })
