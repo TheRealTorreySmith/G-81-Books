@@ -9,15 +9,14 @@ const allAuthors = (req, res, next) => {
   authorService.getAuthors()
   .then((results) => {
     res.render('authors', {
-      title: 'Authors Home Page'
+      title: 'Authors Home Page',
       authorList: results
     })
   })
 }
 
 const newAuthorPage = (req, res, next) => {
-  //create a form in .ejs and require it here
-  res.render('newAuthorPage', { title: 'New Authors Page' })
+  res.render('addAuthor', { title: 'New Author\'s Page' })
 }
 
 const newAuthor = (req, res, next) => {
@@ -31,23 +30,17 @@ const newAuthor = (req, res, next) => {
   }
   authorService.insertAuthor(author)
     .then((data) => {
-      res.render('newAuthorPage', {
-        title: 'New Authors Page'
+      res.render('addAuthor', {
+        title: 'New Author\'s Page'
+        status: 'New author has been added'
       })
     })
     .catch(err => {
-      res.render('newAuthorPage', {
+      res.render('addAuthor', {
         title: 'New Authors Page',
-        newAuthor : err.message
+        status : err
       })
     })
-}
-
-const oneAuthor = (req, res, next) => {
-  res.render('authors', { title: 'One Author\'s Page' })
-  return knex('authors')
-  .where('id', req.params.id)
-  .first()
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -57,11 +50,12 @@ const editAuthorPage = (req, res, next) => {
 const editAuthor = (req, res, next) => {
   const authorService = new AuthorService()
   authorService.getAuthorById(req.params.id)
+  const body = req.body
   const editedAuthor = {
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    biography: req.body.biography,
-    portrait_url: req.body.portraitUrl
+    first_name: body.firstName,
+    last_name: body.lastName,
+    biography: body.biography,
+    portrait_url: body.portraitUrl
   }
   authorService.updateAuthor(editedAuthor)
       .then((data) => {
@@ -72,8 +66,8 @@ const editAuthor = (req, res, next) => {
       })
 }
 
-const deleteAuthorPage = (req, res, next) => {
-  //create .ejs
+
+
   res.render('authors', { title: 'Delete Author Page' })
 }
 

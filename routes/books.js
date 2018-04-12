@@ -1,25 +1,41 @@
-var express = require('express');
-var router = express.Router();
+
+const express = require('express');
+const knex = require('../knex')
+const router = express.Router();
+
 
 /* GET home page. */
 const allBooks = (req, res, next) => {
-  res.render('books', { title: 'Books Home Page' })
+  // knex('authors')
+  knex('books')
+    .then((allBooks) => {
+        res.render('books', {
+          title: 'New Books Page',
+          allBooks
+        })
+    })
 }
 
 const newBookPage = (req, res, next) => {
-  res.render('addBook', { title: 'New Books Page' })
+
+  res.render('books', { title: 'New Books Page' })
+
 }
 
 const newBook = (req, res, next) => {
-
+  const { title , genre, cover_url, description } = req.body
+  // console.log(title , genre, cover_url, description)
+  // const bookService = new BookService()
+  // bookService.insertBook({ title , genre, cover_url, description })
+  res.redirect('/new')
 }
 
 const oneBook = (req, res, next) => {
-  res.render('index', { title: 'One Book\'s Page' })
+  res.render('books', { title: 'One Book\'s Page' })
 }
 
 const editBookPage = (req, res, next) => {
-  res.render('index', { title: 'Edit Book Page' })
+  res.render('books', { title: 'Edit Book Page' })
 }
 
 const editBook = (req, res, next) => {
@@ -27,7 +43,7 @@ const editBook = (req, res, next) => {
 }
 
 const deleteBookPage = (req, res, next) => {
-  res.render('index', { title: 'Delete Book Page' })
+  res.render('books', { title: 'Delete Book Page' })
 }
 
 const deleteBook = (req, res, next) => {
