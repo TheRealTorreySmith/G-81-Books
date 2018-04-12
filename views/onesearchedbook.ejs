@@ -1,25 +1,23 @@
 <div class="row justify-content-md-center">
   <div class="book-cover col col-lg-3">
     <div class="cover-url-border">
-      <img class="cover-url" src= "<%= allBooks[i].cover_url %>" alt="cover-url">
+      <img class="cover-url" src= "<%= cover_url %>" alt="cover-url">
     </div>
   </div>
   <div class="col-md-9">
     <div class="row book-row">
-      <p id="<%= allBooks[i].id %>" class="book" name="<%= allBooks[i].title %>"><%= allBooks[i].title %></p>
+      <p id="searched-title" class="book"><%= book_title %></p>
       <button type="submit" class="edit-button btn btn-primary" >Edit</button>
       <button type="button" class="btn btn-sm btn-danger remove-button">Delete</button>
     </div>
     <div class="row author-row">
-      <p class="authors"><%= authors[i].first_name %> <%= authors[i].last_name %></p>
+      <p class="authors"><%= authors %></p>
     </div>
     <div class="row genre-row">
-      <p class="genre"><%= allBooks[i].genre %></p>
+      <p class="genre"><%= genre %></p>
     </div>
     <div class="row definition-row">
-      <p class="definition"><%= allBooks[i].description %></p>
+      <p class="definition"><%= description %></p>
     </div>
   </div>
-</div>
-<div class="spacer">
 </div>

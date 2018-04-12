@@ -5,16 +5,19 @@ const express = require('express');
 const knex = require('../knex')
 const router = express.Router();
 
-
-/* GET home page. */
+/* GET ALL BOOKS */
 const allBooks = (req, res, next) => {
-  // knex('authors')
-  knex('books')
-    .then((allBooks) => {
-        res.render('books', {
-          title: 'New Books Page',
-          allBooks
-        })
+  knex('authors')
+    .select('*')
+    .then((authors) => {
+    knex('books')
+      .then((allBooks) => {
+          res.render('books', {
+            title: 'All Books',
+            allBooks,
+            authors
+          })
+      })
     })
 }
 
@@ -29,14 +32,24 @@ const newBookPage = (req, res, next) => {
 
 const newBook = (req, res, next) => {
   const { title , genre, cover_url, description } = req.body
-  // console.log(title , genre, cover_url, description)
-  // const bookService = new BookService()
-  // bookService.insertBook({ title , genre, cover_url, description })
   res.redirect('/new')
 }
 
 const oneBook = (req, res, next) => {
-  res.render('books', { title: 'One Book\'s Page' })
+  knex('books')
+    .join('books_authors', 'books.id', 'books_authors.book_id')
+    .join('authors', 'books_authors.author_id', 'authors.id')
+    .where('books.id', req.params.id)
+    .then((book) => {
+        res.render('searchedbook', {
+          title: 'Book Lookup',
+          book_title: book[0].title,
+          cover_url: book[0].cover_url,
+          authors: `${book[0].first_name} ${book[0].last_name}`,
+          genre: book[0].genre,
+          description: book[0].description
+        })
+    })
 }
 
 const editBookPage = (req, res, next) => {
@@ -63,6 +76,5 @@ router.get('/:id/delete', deleteBookPage)
 router.post('/new', newBook)
 router.patch('/:id/edit', editBook)
 router.delete('/:id/delete', deleteBook)
-
 
 module.exports = router

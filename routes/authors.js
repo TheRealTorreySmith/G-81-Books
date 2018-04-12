@@ -90,10 +90,10 @@ router.get('/', allAuthors)
 router.get('/new', newAuthorPage)
 // router.get('/:id', oneAuthor)
 router.get('/:id/edit', editAuthorPage)
-router.get('/:id/delete', deleteAuthorPage)
+// router.get('/:id/delete', deleteAuthorPage)
 router.post('/new', newAuthor)
 router.patch('/:id/edit', editAuthor)
-// router.delete('/:id/delete', deleteAuthor) 
+// router.delete('/:id/delete', deleteAuthor)
 
 
 module.exports = router

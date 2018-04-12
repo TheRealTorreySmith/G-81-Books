@@ -14,15 +14,9 @@
       <div class="row">
         <% include ./sidenav %>
         <div class="all-books-container col-lg-7">
-        <% include ./search %>
-        <% for (let i = 0; i < allBooks.length; i++) { %>
-          <% include ./onebook %>
-        <% } %>
+          <% include ./onesearchedbook %>
         </div>
       </div>
     </main>
-    <footer>
-        <% include ./footer %>
-    </footer>
   </body>
 </html>
