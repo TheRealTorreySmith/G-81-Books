@@ -23,10 +23,10 @@ const newAuthor = (req, res, next) => {
   const authorService = new AuthorService()
   const body = req.body
   const author = {
-    first_name: body.firstName,
-    last_name: body.lastName,
+    first_name: body.first_name,
+    last_name: body.last_name,
     biography: body.biography,
-    portrait_url: body.portraitUrl
+    portrait_url: body.portrait_url
   }
   authorService.insertAuthor(author)
     .then((data) => {
@@ -34,13 +34,17 @@ const newAuthor = (req, res, next) => {
         title: 'New Author\'s Page',
         status: 'New author has been added'
       })
-    })
     .catch(err => {
-      res.render('addAuthor', {
-        title: 'New Authors Page',
-        status : err
-      })
+      res.status(409).json({status: err.message})
     })
+ })
+}
+
+const oneAuthor = (req, res, next) => {
+  res.render('authors', { title: 'One Author\'s Page' })
+  return knex('authors')
+  .where('id', req.params.id)
+  .first()
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -67,11 +71,11 @@ const editAuthor = (req, res, next) => {
 
 }
 
-const deleteAuthorPage = (req, res, next) => {
-  res.render('delete', { title: 'Delete Author Page' })
-}
+// const deleteAuthor = (req, res, next) => {
+//   res.render('delete', { title: 'Delete Author' })
+// }
 
-const deleteAuthor = (req, res, next) => {
+const deleteAuthorPage = (req, res, next) => {
   const authorService = new AuthorService()
   authorService.deleteAuthorById(req.params.id)
   .then((data) => {
@@ -89,7 +93,7 @@ router.get('/:id/edit', editAuthorPage)
 router.get('/:id/delete', deleteAuthorPage)
 router.post('/new', newAuthor)
 router.patch('/:id/edit', editAuthor)
-router.delete('/:id/delete', deleteAuthor)
+// router.delete('/:id/delete', deleteAuthor)
 
 
 module.exports = router

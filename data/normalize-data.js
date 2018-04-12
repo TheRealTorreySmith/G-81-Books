@@ -1,6 +1,36 @@
 const papa = require('papaparse')
 const fs = require('fs')
 
+function parseAuthor(firstNameKey, lastNameKey, biographyKey, coverUrlKey, i, row, authors, mappings) {
+  let firstName = row[firstNameKey]
+  let lastName = row[lastNameKey]
+
+  const existingAuthor = authors.filter((author) => author.first_name === firstName &&
+    author.last_name === lastName)
+
+  let author = null
+  if (existingAuthor.length === 0) {
+    author = {
+      id: authors.length + 1,
+      first_name: firstName,
+      last_name: lastName,
+      biography: row[biographyKey],
+      portrait_url: row[coverUrlKey]
+    }
+    authors.push(author)
+    mappings.push({
+      book_id: (i + 1),
+      author_id: author.id
+    })
+  }
+  else {
+    mappings.push({
+      book_id: (i + 1),
+      author_id: existingAuthor[0].id
+    })
+  }
+}
+
 function normalize(filepath) {
   // First, read in the file as a string
   const contents = fs.readFileSync(filepath, 'utf-8')
@@ -19,7 +49,6 @@ function normalize(filepath) {
   const books = []
   const authors = []
   const mapping = []
-  const uniqueAuthors = []
   let authorId = 1
   for (let i = 0; i < result.data.length; i++) {
     const row = result.data[i]
@@ -30,65 +59,22 @@ function normalize(filepath) {
       description: row['Book Description'],
       cover_url: row['Book Cover URL']
     })
-    let author = {
-      id: authorId++,
-      first_name: row['Author 1 First Name'],
-      last_name: row['Author 1 Last Name'],
-      biography: row['Author 1 Biography'],
-      portrait_url: row['Author 1 Portrait URL']
-    }
-    mapping.push({
-      book_id: (i + 1),
-      author_id: author.id
-    })
 
-    let key = `${author.first_name}_${author.last_name}`
-    if (!uniqueAuthors.includes(key)) {
-      authors.push(author)
-      uniqueAuthors.push(key)
-    }
+    parseAuthor('Author 1 First Name', 'Author 1 Last Name', 'Author 1 Biography',
+      'Author 1 Portrait URL', i, row, authors, mapping)
+
     if (row['Author 2 First Name']) {
-      author = {
-        id: authorId++,
-        first_name: row['Author 2 First Name'],
-        last_name: row['Author 2 Last Name'],
-        biography: row['Author 2 Biography'],
-        portrait_url: row['Author 2 Portrait URL']
-      }
-      mapping.push({
-        book_id: (i + 1),
-        author_id: author.id
-      })
-      key = `${author.first_name}_${author.last_name}`
-      if (!uniqueAuthors.includes(key)) {
-        authors.push(author)
-        uniqueAuthors.push(key)
-      }
+      parseAuthor('Author 2 First Name', 'Author 2 Last Name', 'Author 2 Biography',
+        'Author 2 Portrait URL', i, row, authors, mapping)
     }
     if (row['Author 3 First Name']) {
-      author = {
-        id: authorId++,
-        first_name: row['Author 3 First Name'],
-        last_name: row['Author 3 Last Name'],
-        biography: row['Author 3 Biography'],
-        portrait_url: row['Author 3 Portrait URL']
-      }
-      mapping.push({
-        book_id: (i + 1),
-        author_id: author.id
-      })
-      key = `${author.first_name}_${author.last_name}`
-      if (!uniqueAuthors.includes(key)) {
-        authors.push(author)
-        uniqueAuthors.push(key)
-      }
+      parseAuthor('Author 3 First Name', 'Author 3 Last Name', 'Author 3 Biography',
+        'Author 3 Portrait URL', i, row, authors, mapping)
     }
   }
   return {
     books, authors, mapping
   }
 }
-
-console.log(normalize('./galvanize_reads_sample_data.csv').authors)
 
 module.exports = normalize
