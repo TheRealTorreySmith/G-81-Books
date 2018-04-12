@@ -89,6 +89,4 @@ function normalize(filepath) {
   }
 }
 
-console.log(normalize('./galvanize_reads_sample_data.csv').authors)
-
 module.exports = normalize
