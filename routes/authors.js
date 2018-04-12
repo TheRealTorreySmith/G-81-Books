@@ -9,7 +9,7 @@ const allAuthors = (req, res, next) => {
   authorService.getAuthors()
   .then((results) => {
     res.render('authors', {
-      title: 'Authors Home Page'
+      title: 'Authors Home Page',
       authorList: results
     })
   })
@@ -18,7 +18,7 @@ const allAuthors = (req, res, next) => {
 const newAuthorPage = (req, res, next) => {
 
   //create a form in .ejs and require it here
-  res.render('newAuthorPage', { title: 'New Authors Page' })
+  res.render('addAuthor', { title: 'New Authors Page' })
 }
 
 const newAuthor = (req, res, next) => {
@@ -59,11 +59,12 @@ const editAuthorPage = (req, res, next) => {
 const editAuthor = (req, res, next) => {
   const authorService = new AuthorService()
   authorService.getAuthorById(req.params.id)
+  const body = req.body
   const editedAuthor = {
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    biography: req.body.biography,
-    portrait_url: req.body.portraitUrl
+    first_name: body.firstName,
+    last_name: body.lastName,
+    biography: body.biography,
+    portrait_url: body.portraitUrl
   }
   authorService.updateAuthor(editedAuthor)
       .then((data) => {
