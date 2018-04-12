@@ -10,4 +10,7 @@ exports.seed = (knex, Promise) => {
       })
       return Promise.all(promises)
     })
+    .then(() => {
+      return knex.raw(`SELECT setval('books_id_seq', (SELECT MAX(id) FROM books));`)
+    })
 }
