@@ -27,6 +27,12 @@
   width: 60px;
   margin-top: 5px;
   margin-right: 10px;
+  background-color: #ff6e4c !important;
+  border-color: #ff6e4c !important;
+}
+
+.remove-button:hover {
+  background-color: #ff7b5d !important;
 }
 
 .edit-button {
@@ -35,6 +41,12 @@
   margin-top: 5px;
   margin-right: 10px;
   margin-left: auto;
+  background-color: #3389ff !important;
+  border-color: #3389ff !important;
+}
+
+.edit-button:hover {
+  background-color: #66a6ff !important;
 }
 
 .row .author-row {

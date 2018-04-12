@@ -27,6 +27,14 @@
   width: 60px;
   margin-top: 5px;
   margin-right: 10px;
+  background-color: #ff6e4c !important;
+  border-color: #ff6e4c !important;
+}
+
+.remove-button:hover {
+  background-color: #ff7b5d !important;
+  color: #ff7b5d !important;
+
 }
 
 .edit-button {
@@ -35,24 +43,13 @@
   margin-top: 5px;
   margin-right: 10px;
   margin-left: auto;
+  background-color: #3389ff !important;
+  border-color: #3389ff !important;
 }
 
-/* .row .author-row {
-  height: 35px;
-}
-
-.authors {
-  margin: auto 0px auto 10px;
-  float: left;
-} */
-
-/* .row .genre-row {
-  height: 35px;
-}
-
-.genre {
-  margin: auto 0px auto 10px;
-  float: left; */
+.edit-button:hover {
+  background-color: #66a6ff !important;
+  color: #66a6ff !important;
 }
 
 .row .biography-row {
@@ -68,10 +65,6 @@
   margin: auto;
   object-fit: contain;
 }
-
-/* .portrait {
-  object-fit: contain;
-} */
 
 .portrait-border {
   height: 90%;
