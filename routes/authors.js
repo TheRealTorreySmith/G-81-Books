@@ -16,8 +16,7 @@ const allAuthors = (req, res, next) => {
 }
 
 const newAuthorPage = (req, res, next) => {
-  //create a form in .ejs and require it here
-  res.render('addAuthor', { title: 'New Authors Page' })
+  res.render('addAuthor', { title: 'New Author\'s Page' })
 }
 
 const newAuthor = (req, res, next) => {
@@ -31,23 +30,17 @@ const newAuthor = (req, res, next) => {
   }
   authorService.insertAuthor(author)
     .then((data) => {
-      res.render('newAuthorPage', {
-        title: 'New Authors Page'
+      res.render('addAuthor', {
+        title: 'New Author\'s Page'
+        status: 'New author has been added'
       })
     })
     .catch(err => {
-      res.render('newAuthorPage', {
+      res.render('addAuthor', {
         title: 'New Authors Page',
-        newAuthor : err
+        status : err
       })
     })
-}
-
-const oneAuthor = (req, res, next) => {
-  res.render('authors', { title: 'One Author\'s Page' })
-  return knex('authors')
-  .where('id', req.params.id)
-  .first()
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -73,8 +66,8 @@ const editAuthor = (req, res, next) => {
       })
 }
 
-const deleteAuthorPage = (req, res, next) => {
-  //create .ejs
+
+
   res.render('authors', { title: 'Delete Author Page' })
 }
 
