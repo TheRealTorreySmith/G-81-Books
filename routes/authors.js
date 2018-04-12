@@ -38,7 +38,7 @@ const newAuthor = (req, res, next) => {
     .catch(err => {
       res.render('newAuthorPage', {
         title: 'New Authors Page',
-        newAuthor : err.message
+        newAuthor : err
       })
     })
 }
