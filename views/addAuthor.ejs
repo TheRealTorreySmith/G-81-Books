@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <% include ./head %>
+    <link rel='stylesheet' href='/stylesheets/sidenav.css' />
+    <link rel='stylesheet' href='/stylesheets/addBook.css' />
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="/javascript/addAuthor.js"></script>
+</head>
+
+
+<body>
+  <header>
+    <% include ./header %>
+  </header>
+  <main>
+
+
+      <div class='row'>
+        <div class="col-sm-12 col-md-3">
+            <% include ./sidenav %>
+        </div>
+        <div class='form-container col-sm-12 col-md-9'>
+          <form class="form" id="createAuthor" action="#" method="post">
+              <legend><h3>ADD AN AUTHOR</h3></legend>
+
+              <label for="first_name">FIRST NAME:</label>
+              <input type="text" id='first_name' name="first_name" required>
+
+              <label for="last_name">LAST NAME:</label>
+              <input type="text" id="last_name" name="last_name" required>
+
+              <label for="biography">BIOGRAPHY:</label>
+              <textarea type="text" id="biography" name="biography"></textarea>
+
+              <label for="portrait_url">PORTRAIT URL:</label>
+              <input type="text" id="portrait_url" name="portrait_url">
+
+              <input type="submit" class='btn btn-primary' value='Add a new author'>
+            </form>
+            <p id="server-status"></p>
+        </div>
+  </main>
+  <footer>
+    <% include ./footer %>
+  </footer>
+
+</body>
+
+</html>
