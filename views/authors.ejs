@@ -3,30 +3,30 @@
 <head>
     <% include ./head %>
     <link rel="stylesheet" href="/stylesheets/homepage.css">
-    <link rel="stylesheet" href="/stylesheets/sidenav.css">
+    <link rel='stylesheet' href='/stylesheets/sidenav.css' />
     <link rel="stylesheet" href="/stylesheets/all-authors.css">
 </head>
-
   <body>
     <header>
       <% include ./header %>
     </header>
     <main>
+
+      <div class="row">
         <% include ./sidenav %>
-        <section class="main__section" id="main__section">
-          <% for(var i = 0; i < authorList.length; i++) { %>
-          <article class="top-section">
-            <h2><%= authorList[i].first_name  %></h2>
-            <h2><%= authorList[i].last_name  %></h2>
-            <button type="submit" class="main__btn edit-btn">Edit</button>
-            <button type="submit" class="main__btn remove-btn">Remove</button>
-          </article>
-          <article class="bottom-section">
-            <img class="portrait" alt="author-portrait" src="<%= authorList[i].portrait_url %>">
-            <p><%= authorList[i].biography %></p>
-          </article>
+        <div class="all-authors-container col-lg-7">
+        <% for (let i = 0; i < allAuthors.length; i++) { %>
+          <% include ./one-author %>
         <% } %>
-      </section>
+        </div>
+      </div>
     </main>
+
+    <% include ./sidenav %>
+    </main>
+    <footer>
+        <% include ./footer %>
+    </footer>
+
   </body>
 </html>

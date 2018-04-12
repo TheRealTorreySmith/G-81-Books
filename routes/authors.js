@@ -7,10 +7,10 @@ const AuthorService = require('../services/author_service')
 const allAuthors = (req, res, next) => {
   const authorService = new AuthorService()
   authorService.getAuthors()
-  .then((results) => {
+  .then((allAuthors) => {
     res.render('authors', {
       title: 'Authors Home Page',
-      authorList: results
+      allAuthors
     })
   })
 }
