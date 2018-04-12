@@ -31,16 +31,24 @@ const newAuthor = (req, res, next) => {
   authorService.insertAuthor(author)
     .then((data) => {
       res.render('addAuthor', {
-        title: 'New Author\'s Page'
-        status: 'New author has been added'
+        title: 'New Author\'s Page',
+        status: 'New author has been added',
+        err: ''
       })
     })
     .catch(err => {
       res.render('addAuthor', {
-        title: 'New Authors Page',
-        status : err
+        title: 'New Author\'s Page',
+        status : '',
+        err: err.message
       })
     })
+}
+const oneAuthor = (req, res, next) => {
+  res.render('authors', { title: 'One Author\'s Page' })
+  return knex('authors')
+  .where('id', req.params.id)
+  .first()
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -67,7 +75,8 @@ const editAuthor = (req, res, next) => {
 }
 
 
-
+const deleteAuthorPage = (req, res, next) => {
+  //create .ejs
   res.render('authors', { title: 'Delete Author Page' })
 }
 
