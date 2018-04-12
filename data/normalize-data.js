@@ -19,6 +19,7 @@ function normalize(filepath) {
   const books = []
   const authors = []
   const mapping = []
+  const uniqueAuthors = []
   let authorId = 1
   for (let i = 0; i < result.data.length; i++) {
     const row = result.data[i]
@@ -40,7 +41,12 @@ function normalize(filepath) {
       book_id: (i + 1),
       author_id: author.id
     })
-    authors.push(author)
+
+    let key = `${author.first_name}_${author.last_name}`
+    if (!uniqueAuthors.includes(key)) {
+      authors.push(author)
+      uniqueAuthors.push(key)
+    }
     if (row['Author 2 First Name']) {
       author = {
         id: authorId++,
@@ -53,7 +59,11 @@ function normalize(filepath) {
         book_id: (i + 1),
         author_id: author.id
       })
-      authors.push(author)
+      key = `${author.first_name}_${author.last_name}`
+      if (!uniqueAuthors.includes(key)) {
+        authors.push(author)
+        uniqueAuthors.push(key)
+      }
     }
     if (row['Author 3 First Name']) {
       author = {
@@ -67,12 +77,18 @@ function normalize(filepath) {
         book_id: (i + 1),
         author_id: author.id
       })
-      authors.push(author)
+      key = `${author.first_name}_${author.last_name}`
+      if (!uniqueAuthors.includes(key)) {
+        authors.push(author)
+        uniqueAuthors.push(key)
+      }
     }
   }
   return {
     books, authors, mapping
   }
 }
+
+console.log(normalize('./galvanize_reads_sample_data.csv').authors)
 
 module.exports = normalize
