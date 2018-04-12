@@ -14,21 +14,18 @@
     <main>
         <% include ./sidenav %>
         <section class="main__section" id="main__section">
-          <img class="portrait" alt="author-image">
+          <% for(var i = 0; i < authorList.length; i++) { %>
           <article class="top-section">
-            <h2>Author Name</h2>
+            <h2><%= authorList[i].first_name  %></h2>
+            <h2><%= authorList[i].last_name  %></h2>
             <button type="submit" class="main__btn edit-btn">Edit</button>
             <button type="submit" class="main__btn remove-btn">Remove</button>
           </article>
           <article class="bottom-section">
-            <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.
-            De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia?</p>
-            <ul class="main__ul">
-              <li>Book One</li>
-              <li>Book Two</li>
-              <li>Book Three</li>
-            </ul>
+            <img class="portrait" alt="author-portrait" src="<%= authorList[i].portrait_url %>">
+            <p><%= authorList[i].biography %></p>
           </article>
+        <% } %>
       </section>
     </main>
   </body>
