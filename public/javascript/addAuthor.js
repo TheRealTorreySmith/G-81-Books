@@ -12,8 +12,9 @@ $(document).ready(() => {
   $('#createAuthor').submit((event) => {
     event.preventDefault()
       // Clear out any msgs
-      $('#server-side-validation-errors').empty()
+      // $('#server-side-validation-errors').empty()
       // Make POST request with form field data as POST body
+      debugger
       $.ajax({
         url: '/authors/new',
         type: 'POST',
@@ -21,10 +22,16 @@ $(document).ready(() => {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(createRequest()),
         success: (data) => {
-          $('#server-status').text(data.status)
+          console.log('data success');
+          $('#exampleModalCenter').modal('show')
         },
+
+        //   $('#server-status').text(data.status)
+        // },
         error: (err) => {
-          $('#server-status').text(err.responseJSON.status)
+          console.log('err', err);
+          $('#exampleModalCenter').modal('show')
+          // $('#server-status').text(err.responseJSON.status)
         }
       }) // end ajax
 

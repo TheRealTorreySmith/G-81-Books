@@ -22,7 +22,9 @@ form input:focus, textarea:focus{
   margin-top: 1em;
   margin-left: 20%;
 }
-
+.modal-content {
+  width: 87%;
+}
 @media(min-width:601px){
   .form-container {
     margin-left: 0;

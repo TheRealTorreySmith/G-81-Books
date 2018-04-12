@@ -30,9 +30,13 @@ const newAuthor = (req, res, next) => {
   }
   authorService.insertAuthor(author)
     .then((data) => {
-      res.render('addAuthor', {
-        title: 'New Author\'s Page',
-        status: 'New author has been added'
+      // res.render('addAuthor', {
+      //   title: 'New Author\'s Page',
+      //   status: 'New author has been added'
+    //  res.status(200).json({status: 'New author has been added'})
+      console.log(data);
+      res.sendStatus(200)
+      // res.render('modalNewAuthor', {title: 'Success', message: 'New author has been added'})
       })
     .catch(err => {
       res.status(409).json({status: err.message})
@@ -71,9 +75,9 @@ const editAuthor = (req, res, next) => {
 
 }
 
-// const deleteAuthor = (req, res, next) => {
-//   res.render('delete', { title: 'Delete Author' })
-// }
+const deleteAuthor = (req, res, next) => {
+  res.render('delete', { title: 'Delete Author' })
+}
 
 const deleteAuthorPage = (req, res, next) => {
   const authorService = new AuthorService()
@@ -88,12 +92,12 @@ const deleteAuthorPage = (req, res, next) => {
 
 router.get('/', allAuthors)
 router.get('/new', newAuthorPage)
-// router.get('/:id', oneAuthor)
+router.get('/:id', oneAuthor)
 router.get('/:id/edit', editAuthorPage)
 router.get('/:id/delete', deleteAuthorPage)
 router.post('/new', newAuthor)
 router.patch('/:id/edit', editAuthor)
-// router.delete('/:id/delete', deleteAuthor) 
+router.delete('/:id/delete', deleteAuthor)
 
 
 module.exports = router
