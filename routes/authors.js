@@ -23,24 +23,24 @@ const newAuthor = (req, res, next) => {
   const authorService = new AuthorService()
   const body = req.body
   const author = {
-    first_name: body.firstName,
-    last_name: body.lastName,
+    first_name: body.first_name,
+    last_name: body.last_name,
     biography: body.biography,
-    portrait_url: body.portraitUrl
+    portrait_url: body.portrait_url
   }
   authorService.insertAuthor(author)
     .then((data) => {
-      res.render('addAuthor', {
-        title: 'New Author\'s Page'
-        status: 'New author has been added'
+      res.status(200).json({status: 'New author has been added'})
       })
-    })
     .catch(err => {
-      res.render('addAuthor', {
-        title: 'New Authors Page',
-        status : err
-      })
+      res.status(409).json({status: err.message})
     })
+}
+const oneAuthor = (req, res, next) => {
+  res.render('authors', { title: 'One Author\'s Page' })
+  return knex('authors')
+  .where('id', req.params.id)
+  .first()
 }
 
 const editAuthorPage = (req, res, next) => {
@@ -67,7 +67,8 @@ const editAuthor = (req, res, next) => {
 }
 
 
-
+const deleteAuthorPage = (req, res, next) => {
+  //create .ejs
   res.render('authors', { title: 'Delete Author Page' })
 }
 
