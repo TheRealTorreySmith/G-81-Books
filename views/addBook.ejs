@@ -14,8 +14,6 @@
     <% include ./header %>
   </header>
   <main>
-
-
       <div class='row'>
         <div class="col-sm-12 col-md-3">
             <% include ./sidenav %>
@@ -38,10 +36,13 @@
 
               <label for="authors">AUTHORS:</label>
               <ul id='authors-container'>
-                <% for (let i = 0; i < authorList.length; i++){ %>
-                 <li><%= authorList[i].first_name %> </li>
-                <% } %>
+
               </ul>
+              <select id='authors-select-list'>
+                <% for (let i = 0; i < authorList.length; i++){ %>
+                 <option><%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
+                <% } %>
+              </select>
               <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
               <br>
               <input type="submit" id='submit-button' class='btn btn-success' value='Add to Library'>
