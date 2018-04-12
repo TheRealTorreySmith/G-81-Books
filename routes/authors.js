@@ -31,7 +31,7 @@ const newAuthor = (req, res, next) => {
   authorService.insertAuthor(author)
     .then((data) => {
       res.render('addAuthor', {
-        title: 'New Author\'s Page'
+        title: 'New Author\'s Page',
         status: 'New author has been added'
       })
     })
@@ -64,11 +64,11 @@ const editAuthor = (req, res, next) => {
       .catch(err => {
         next(boom.notFound())
       })
+
 }
 
-
-
-  res.render('authors', { title: 'Delete Author Page' })
+const deleteAuthorPage = (req, res, next) => {
+  res.render('delete', { title: 'Delete Author Page' })
 }
 
 const deleteAuthor = (req, res, next) => {
@@ -84,7 +84,7 @@ const deleteAuthor = (req, res, next) => {
 
 router.get('/', allAuthors)
 router.get('/new', newAuthorPage)
-router.get('/:id', oneAuthor)
+// router.get('/:id', oneAuthor)
 router.get('/:id/edit', editAuthorPage)
 router.get('/:id/delete', deleteAuthorPage)
 router.post('/new', newAuthor)
