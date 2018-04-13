@@ -53,7 +53,7 @@ $(document).ready((event) => {
   $('#create-book-form').submit((event) => {
     event.preventDefault()
       // Make POST request with form field data as POST body
-      const stringOfAuthors = $('#authors-container').val()      
+      const stringOfAuthors = $('#authors-container').val()
       if(stringOfAuthors.length < 1) {
         $('#exampleModalCenterBody').empty()
         $('#exampleModalCenterBody').append(`<p>Wait a second...</p>`)
@@ -70,7 +70,7 @@ $(document).ready((event) => {
             console.log('data success', data);
             $('#exampleModalCenterBody').empty()
             $('#exampleModalCenterBody').append(`<p>Success!</p>`)
-            $('#exampleModalCenterBody').append(`<p>${data.message}</p>`)
+            $('#exampleModalCenterBody').append(`<p>${data.message}</p>`)            
             $('#exampleModalCenter').modal('show')
           },
           error: (err) => {
