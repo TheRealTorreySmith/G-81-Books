@@ -33,13 +33,13 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.output.payload.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+  // // set locals, only providing error in development
+  // res.locals.message = err.output.payload.message
+  // res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page
   res.status(err.output.statusCode || 500)
-  res.render('error')
+  res.json({ message: err.output.payload.message })
 })
 
 module.exports = app
