@@ -123,8 +123,28 @@ class AuthorService {
           throw boom.badImplementation()
         })
     }
-    throw boom.badRequest('Author id is not required')
+    throw boom.badRequest('Author id is required')
   }
-}
 
+
+deleteAuthorByFirstLastName(firstName, lastName) {
+  if (firstName && lastName) {
+    return knex(authorsTable)
+      .where({'first_name': firstName, 'last_name': lastName})
+      .del()
+      .returning('*')
+      .then((rows) => {
+        if (rows.length > 0) {
+          return rows[0]
+        } else {
+          throw boom.notFound()
+        }
+      })
+      .catch((err) => {
+        throw boom.badImplementation()
+      })
+  }
+  throw boom.badRequest('Author first and last names are required')
+}
+}
 module.exports = AuthorService

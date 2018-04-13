@@ -87,19 +87,21 @@ const editAuthor = (req, res, next) => {
 }
 
 const deleteAuthor = (req, res, next) => {
-  res.render('delete', {
-    title: 'Delete Author'
-  })
+  console.log('I am on delete route')
+  const authorService = new AuthorService()
+  authorService.deleteAuthorByFirstLastName(req.body.first_name, req.body.last_name)
+    .then((data) => {
+      console.log('deleteAuthorByFirstLastName succeeded:', data)
+      res.status(200).json({
+        message: 'Author ' + req.body.first_name + ' ' + req.body.last_name + ' has been deleted',
+      })
+    })
 }
 
 const deleteAuthorPage = (req, res, next) => {
-  const authorService = new AuthorService()
-  authorService.deleteAuthorById(req.params.id)
-    .then((data) => {
-      res.render('deleteAuthorPage', {
-        title: 'Delete Author Page'
-      })
-    })
+  res.render('delete', {
+    title: 'Delete Author'
+  })
 }
 
 
@@ -110,7 +112,7 @@ router.get('/:id/edit', editAuthorPage)
 router.get('/:id/delete', deleteAuthorPage)
 router.post('/new', newAuthor)
 router.patch('/:id/edit', editAuthor)
-router.delete('/:id/delete', deleteAuthor)
+router.delete('/', deleteAuthor)
 
 
 module.exports = router
