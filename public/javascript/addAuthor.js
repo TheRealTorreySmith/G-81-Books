@@ -11,9 +11,6 @@ $(document).ready(() => {
   // Handle submit event
   $('#createAuthor').submit((event) => {
     event.preventDefault()
-      // Clear out any msgs
-      // $('#server-side-validation-errors').empty()
-      // Make POST request with form field data as POST body
       $.ajax({
         url: '/authors/new',
         type: 'POST',
@@ -21,8 +18,8 @@ $(document).ready(() => {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(createRequest()),
         success: (data) => {
-          debugger
-          console.log('data success', data);
+          console.log('data success', data)
+          $('#exampleModalCenterBody').empty()
           $('#exampleModalCenterBody').append(`<p>${data.message}</p>`)
           $('#exampleModalCenterBody').append(`<p>${data.instructions}</p>`)
           $('#exampleModalCenter').modal('show')
@@ -30,7 +27,8 @@ $(document).ready(() => {
         //   $('#server-status').text(data.status)
         // },
         error: (err) => {
-          console.log('err', err);
+          console.log('err', err)
+          $('#exampleModalCenterBody').empty()
           $('#exampleModalCenterBody').append(`<p>${err.responseJSON.message}</p>`)
           $('#exampleModalCenter').modal('show')
           // $('#server-status').text(err.responseJSON.status)
