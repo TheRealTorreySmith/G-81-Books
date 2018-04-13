@@ -39,38 +39,49 @@ $(document).ready((event) => {
   })
 
 
-  const createRequest = () => { return {
+  const createRequest = () => {
+    const arrayOfAuthors = $('#authors-container').val().split('  ').map(x => x.trim())
+    return {
     title: $('#title').val(),
     genre: $('#genre').val(),
     cover_url: $('#cover_url').val(),
-    description: $('#description').val()
+    description: $('#description').val(),
+    authors: arrayOfAuthors
   } }
 
   // Handle submit event
   $('#create-book-form').submit((event) => {
     event.preventDefault()
       // Make POST request with form field data as POST body
-      $.ajax({
-        url: '/books/new',
-        type: 'POST',
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(createRequest()),
-        success: (data) => {
-          console.log('data success', data);
-          $('#exampleModalCenterBody').empty()
-          $('#exampleModalCenterBody').append(`<p>Success!</p>`)
-          $('#exampleModalCenterBody').append(`<p>${data.message}</p>`)
-          $('#exampleModalCenter').modal('show')
-        },
-        error: (err) => {
-          console.log('err', err);
-          $('#exampleModalCenterBody').empty()
-          $('#exampleModalCenterBody').append(`<p>Addition Failed...</p>`)
-          $('#exampleModalCenterBody').append(`<p>${err.responseJSON.message}</p>`)
-          $('#exampleModalCenter').modal('show')
-        }
-      }) // end ajax
+      const stringOfAuthors = $('#authors-container').val()      
+      if(stringOfAuthors.length < 1) {
+        $('#exampleModalCenterBody').empty()
+        $('#exampleModalCenterBody').append(`<p>Wait a second...</p>`)
+        $('#exampleModalCenterBody').append(`<p>You need to add at least one author for this book.</p>`)
+        $('#exampleModalCenter').modal('show')
+      } else {
+        $.ajax({
+          url: '/books/new',
+          type: 'POST',
+          dataType: "json",
+          contentType: "application/json; charset=utf-8",
+          data: JSON.stringify(createRequest()),
+          success: (data) => {
+            console.log('data success', data);
+            $('#exampleModalCenterBody').empty()
+            $('#exampleModalCenterBody').append(`<p>Success!</p>`)
+            $('#exampleModalCenterBody').append(`<p>${data.message}</p>`)
+            $('#exampleModalCenter').modal('show')
+          },
+          error: (err) => {
+            console.log('err', err);
+            $('#exampleModalCenterBody').empty()
+            $('#exampleModalCenterBody').append(`<p>Addition Failed...</p>`)
+            $('#exampleModalCenterBody').append(`<p>${err.responseJSON.message}</p>`)
+            $('#exampleModalCenter').modal('show')
+          }
+        }) // end ajax
+      }
   }) // end submit handler
 
 })

@@ -38,7 +38,7 @@ const newBook = (req, res, next) => {
   console.log(req.body)
   const { genre, description, cover_url } = req.body
   const title = req.body.title.trim().replace(/\w\S*/g, (x) => {return x.charAt(0).toUpperCase() + x.substr(1).toLowerCase()})
-  //const authorsArray = req.body.authors.split('  ').map(x => x.trim())
+  // const authorsArray = req.body.authors.split('  ').map(x => x.trim())
   const newBook = {
     title,
     genre,
