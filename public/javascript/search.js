@@ -14,7 +14,7 @@ const goButton = () => {
 }
 
 //FUNCTION THAT CHECKS IF THE 'ENTER' KEY WAS PRESSED
-const checkButton = () => {
+const checkButton = (event) => {
   if (event.which == 13) {
       event.preventDefault()
       goButton()
