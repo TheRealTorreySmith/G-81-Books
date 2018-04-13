@@ -78,6 +78,7 @@ const oneBook = (req, res, next) => {
 }
 
 const editBookPage = (req, res, next) => {
+
   res.render('books', { title: 'Edit Book Page' })
 }
 
@@ -86,7 +87,20 @@ const editBook = (req, res, next) => {
 }
 
 const deleteBookPage = (req, res, next) => {
-  res.render('books', { title: 'Delete Book Page' })
+  knex('books')
+    .join('books_authors', 'books.id', 'books_authors.book_id')
+    .join('authors', 'books_authors.author_id', 'authors.id')
+    .where('books.id', req.params.id)
+    .then((book) => {
+      res.render('delete-book', {
+        title: `Delete Book # ${req.params.id}`,
+        book_title: book[0].title,
+        cover_url: book[0].cover_url,
+        authors: `${book[0].first_name} ${book[0].last_name}`,
+        genre: book[0].genre,
+        description: book[0].description
+      })
+    })
 }
 
 const deleteBook = (req, res, next) => {

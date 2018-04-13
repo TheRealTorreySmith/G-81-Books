@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/stylesheets/homepage.css">
     <link rel='stylesheet' href='/stylesheets/sidenav.css' />
     <link rel="stylesheet" href="/stylesheets/all-authors.css">
+    <link rel="stylesheet" href="/stylesheets/search-bar.css">
 </head>
   <body>
     <header>
@@ -14,6 +15,7 @@
       <div class="row">
         <% include ./sidenav %>
         <div class="all-authors-container col-lg-7">
+        <% include ./search %>
         <% for (let i = 0; i < allAuthors.length; i++) { %>
           <% include ./one-author %>
         <% } %>

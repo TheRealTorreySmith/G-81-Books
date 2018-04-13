@@ -1,0 +1,9 @@
+#big-delete-button {
+  background-color: #FF5555 !important;
+  border-color: #FF5555 !important;
+}
+
+#big-delete-button:hover {
+  background-color: #FF3333 !important;
+  border-color: #FF3333 !important;
+}

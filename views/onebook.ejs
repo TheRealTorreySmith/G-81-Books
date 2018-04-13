@@ -8,7 +8,7 @@
     <div class="row book-row">
       <p id="<%= allBooks[i].id %>" class="book" name="<%= allBooks[i].title %>"><%= allBooks[i].title %></p>
       <button type="submit" class="edit-button btn btn-primary" >Edit</button>
-      <button type="button" class="btn btn-sm btn-danger remove-button">Delete</button>
+      <button type="button" class="btn btn-sm btn-danger remove-button" name="<%= allBooks[i].id %>">Delete</button>
     </div>
     <div class="row author-row">
       <p class="authors"><%= authors[i].first_name %> <%= authors[i].last_name %></p>
