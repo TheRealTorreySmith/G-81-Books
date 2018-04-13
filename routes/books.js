@@ -104,7 +104,11 @@ const deleteBookPage = (req, res, next) => {
 }
 
 const deleteBook = (req, res, next) => {
-
+  knex('books')
+    .where('books.id', req.params.id)
+    .then((book) => {
+      console.log(book)
+    })  
 }
 
 router.get('/', allBooks)

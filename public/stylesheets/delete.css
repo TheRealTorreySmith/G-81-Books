@@ -7,3 +7,13 @@
   background-color: #FF3333 !important;
   border-color: #FF3333 !important;
 }
+
+.cancel-button {
+  background-color: #FF5555 !important;
+  border-color: #FF5555 !important;
+}
+
+.cancel-button:hover {
+  background-color: #FF3333 !important;
+  border-color: #FF3333 !important;
+}
