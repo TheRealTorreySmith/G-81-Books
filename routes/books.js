@@ -35,25 +35,30 @@ const newBookPage = (req, res, next) => {
 }
 
 const newBook = (req, res, next) => {
-  const { title, genre, description, cover_url } = req.body
-  const authorsArray = req.body.authors.split('  ').map(x => x.trim())
-
-  bookService.insertBook({
+  console.log(req.body)
+  const { genre, description, cover_url } = req.body
+  const title = req.body.title.trim().replace(/\w\S*/g, (x) => {return x.charAt(0).toUpperCase() + x.substr(1).toLowerCase()})
+  //const authorsArray = req.body.authors.split('  ').map(x => x.trim())
+  const newBook = {
     title,
     genre,
     description,
     cover_url
-  }).then(result => {
-    res.send(result)
-  })
+  }
 
-  authorService.getAuthors().then(result => {
-  res.render('addBook', {
-    title: 'New Books Page',
-    authorList: result
+  bookService.insertBook(newBook)
+    .then((data) => {
+      res.status(200).json({
+        message: `${newBook.title} has been added to the Library!`
+      })
     })
-  })
+    .catch(err => {
+      res.status(409).json({
+        message: err.output.payload.message
+      })
+    })
 }
+
 
 const oneBook = (req, res, next) => {
   knex('books')

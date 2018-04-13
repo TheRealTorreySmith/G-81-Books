@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <% include ./head %>  
+    <% include ./head %>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/sidenav.css' />
     <link rel='stylesheet' href='/stylesheets/addBook.css' />
-    <script src="/spop-0.1.3/dist/spop.js"></script>  
+    <script src='/javascript/addBook.js'></script>
 </head>
 
 
@@ -19,7 +20,7 @@
             <% include ./sidenav %>
         </div>
         <div class='form-container col-sm-12 col-md-9'>
-          <form class="form" action="/books/new" method="post">
+          <form class="form" id='create-book-form' action="#" method="post">
               <legend><h3>ADD A BOOK</h3></legend>
 
               <label for="title">TITLE:</label>
@@ -40,7 +41,7 @@
               <select id='authors-select-list'>
                 <option value=""></option>
                 <% for (let i = 0; i < authorList.length; i++){ %>
-                 <option value="<% authorList[i].last_name %>"> <%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
+                 <option> <%= authorList[i].first_name %> <%= authorList[i].last_name %> </option>
                 <% } %>
               </select>
               <button id='add-author-button' class= 'btn btn-primary'>Add Author</button>
@@ -53,6 +54,32 @@
   <footer>
     <% include ./footer %>
   </footer>
+
+  <!-- SUCCESS/FAIL MODAL -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">New Book Status</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="exampleModalCenterBody">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </body>
 
 </html>

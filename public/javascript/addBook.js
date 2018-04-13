@@ -1,7 +1,6 @@
 // GET A LIST OF ALL THE AUTHORS WHO HAVE BEEN ADDED
 // CHECK IF AUTHOR HAS ALREADY BEEN ADDED
 const isAuthorAdded = () => {
-  debugger
   let selectedAuthor = $("#authors-select-list").find(":selected").text().trim()
   const arrayOfAuthors = $('#authors-container').val().split('  ').map(x => x.trim())
   if(!arrayOfAuthors.includes(selectedAuthor)){
@@ -38,5 +37,40 @@ $(document).ready((event) => {
       event.preventDefault()
       clearAllAuthors()
   })
+
+
+  const createRequest = () => { return {
+    title: $('#title').val(),
+    genre: $('#genre').val(),
+    cover_url: $('#cover_url').val(),
+    description: $('#description').val()
+  } }
+
+  // Handle submit event
+  $('#create-book-form').submit((event) => {
+    event.preventDefault()
+      // Make POST request with form field data as POST body
+      $.ajax({
+        url: '/books/new',
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(createRequest()),
+        success: (data) => {
+          console.log('data success', data);
+          $('#exampleModalCenterBody').empty()
+          $('#exampleModalCenterBody').append(`<p>Success!</p>`)
+          $('#exampleModalCenterBody').append(`<p>${data.message}</p>`)
+          $('#exampleModalCenter').modal('show')
+        },
+        error: (err) => {
+          console.log('err', err);
+          $('#exampleModalCenterBody').empty()
+          $('#exampleModalCenterBody').append(`<p>Addition Failed...</p>`)
+          $('#exampleModalCenterBody').append(`<p>${err.responseJSON.message}</p>`)
+          $('#exampleModalCenter').modal('show')
+        }
+      }) // end ajax
+  }) // end submit handler
 
 })

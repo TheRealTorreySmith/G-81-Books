@@ -54,24 +54,43 @@ class BookService {
   }
 
   insertBook(book) {
-    if (book.title && book.genre) {
-      return knex(booksTable)
-        .insert(book)
-        .returning('*')
-        .then((rows) => {
-          if (rows.length > 0) {
-            return rows[0]
-          }
-          else {
-            throw boom.notFound()
-          }
-        })
-        .catch((err) => {
-          throw boom.badImplementation()
-        })
+    console.log(book)
+      if (book.title && book.genre) {
+        return knex(booksTable)
+          .where({
+            'title': book.title
+          })
+          .first()
+          .then((data) => {
+            if (data) {
+              console.log("conflict")
+              throw boom.conflict(`Whoops. The book "${book.title}" already exisits.`)
+            } else {
+              return knex(booksTable)
+                .insert(book)
+                .returning('*')
+                .then((rows) => {
+                  if (rows.length > 0) {
+                    return rows[0]
+                  } else {
+                    throw boom.notFound()
+                  }
+                }).catch((err) => {
+                  console.log("boom 1", err)
+                  throw boom.badImplementation()
+                })
+            }
+          })
+          .catch((err) => {
+            console.log("boom 2", err)
+            throw err.isBoom ? err :
+              boom.badImplementation()
+          })
+      }
+      console.log("boom badRequest")
+      throw boom.badRequest('Title and genre are required')
     }
-    throw boom.badRequest('Title and genre are required')
-  }
+
 
   updateBook(book) {
     return knex(booksTable)
