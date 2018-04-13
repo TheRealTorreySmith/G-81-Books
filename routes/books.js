@@ -5,6 +5,9 @@ const bookService = new BookService()
 const express = require('express');
 const knex = require('../knex')
 const router = express.Router();
+const {
+  checkBookData
+} = require('./validate')
 
 /* GET ALL BOOKS */
 const allBooks = (req, res, next) => {
@@ -90,7 +93,7 @@ router.get('/new', newBookPage)
 router.get('/:id', oneBook)
 router.get('/:id/edit', editBookPage)
 router.get('/:id/delete', deleteBookPage)
-router.post('/new', newBook)
+router.post('/new', checkBookData, newBook)
 router.patch('/:id/edit', editBook)
 router.delete('/:id/delete', deleteBook)
 
