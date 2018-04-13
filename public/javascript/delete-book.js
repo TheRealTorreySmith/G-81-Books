@@ -2,12 +2,11 @@
 const smallDelete = (event) => {
    const id = event.target.name
    window.location.href = `http://localhost:3000/books/${id}/delete`
-   $('.remove-button').hide()
-   $('.edit-button').hide()
 }
 
-
-
+const goBack = () => {
+    window.location.href = 'http://localhost:3000/books/'
+}
 
 
 
@@ -16,5 +15,6 @@ $(document).ready(() => {
 
 //CLICK EVENT HANDLER FOR SMALL DELETE BUTTON
 $('.remove-button').on('click', smallDelete)
+$('.back-button').on('click', goBack)
 
 })

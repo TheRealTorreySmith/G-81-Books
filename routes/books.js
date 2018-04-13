@@ -67,7 +67,7 @@ const oneBook = (req, res, next) => {
     .where('books.id', req.params.id)
     .then((book) => {
         res.render('searchedbook', {
-          title: 'Book Lookup',
+          title: book[0].title,
           book_title: book[0].title,
           cover_url: book[0].cover_url,
           authors: `${book[0].first_name} ${book[0].last_name}`,
@@ -93,7 +93,7 @@ const deleteBookPage = (req, res, next) => {
     .where('books.id', req.params.id)
     .then((book) => {
       res.render('delete-book', {
-        title: `Delete Book # ${req.params.id}`,
+        title: `Delete ${book[0].title}`,
         book_title: book[0].title,
         cover_url: book[0].cover_url,
         authors: `${book[0].first_name} ${book[0].last_name}`,

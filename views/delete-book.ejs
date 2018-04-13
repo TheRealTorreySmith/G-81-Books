@@ -6,6 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/sidenav.css' />
     <link rel="stylesheet" href="/stylesheets/books.css">
     <link rel="stylesheet" href="/stylesheets/delete.css">
+    <script type="text/javascript" src="/javascript/delete-book.js"></script>
 </head>
   <body>
     <header>
@@ -15,7 +16,7 @@
       <div class="row">
         <% include ./sidenav %>
         <div class="all-books-container col-lg-7">
-          <% include ./onesearchedbook %>
+          <% include ./delete-this-book %>
           <div class="spacer">
           </div>
           <button id="big-delete-button" type="button" class="btn btn-danger btn-lg btn-block">Delete Book</button>
