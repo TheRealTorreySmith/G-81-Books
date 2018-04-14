@@ -3,6 +3,7 @@ const router = express.Router()
 const knex = require('../knex')
 const boom = require('boom')
 const AuthorService = require('../services/author_service')
+const BookService = require('../services/book_service')
 
 const allAuthors = (req, res, next) => {
   const authorService = new AuthorService()
@@ -86,24 +87,29 @@ const editAuthor = (req, res, next) => {
 
 }
 
-const deleteAuthor = (req, res, next) => {
-  console.log('I am on delete route')
-  const authorService = new AuthorService()
-  authorService.deleteAuthorByFirstLastName(req.body.first_name, req.body.last_name)
-    .then((data) => {
-      console.log('deleteAuthorByFirstLastName succeeded:', data)
-      res.status(200).json({
-        message: 'Author ' + req.body.first_name + ' ' + req.body.last_name + ' has been deleted',
-      })
-    })
-}
-
 const deleteAuthorPage = (req, res, next) => {
-  res.render('delete', {
-    title: 'Delete Author'
+  console.log('id',req.params.id)
+  const bookService = new BookService()
+  bookService.getBookByAuthor(req.params.id)
+  .then(entries => {
+    // TODO: Add check if entries is empty.
+    res.render('delete-author', {
+      title: `Delete Author # ${req.params.id}`,
+      first_name: entries[0].first_name,
+      last_name: entries[0].last_name,
+      biography: entries[0].biography,
+      portrait_url: entries[0].portrait_url,
+      book_titles: entries.map(entry => entry.book_title)
+    })
+  })
+  .catch(err => {
+    console.log('err',err)
   })
 }
 
+const deleteAuthor = (req, res, next) => {
+
+}
 
 router.get('/', allAuthors)
 router.get('/new', newAuthorPage)

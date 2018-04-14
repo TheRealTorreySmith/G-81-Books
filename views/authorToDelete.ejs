@@ -1,0 +1,23 @@
+<div class="row justify-content-md-center">
+  <div class="author-portrait-url col col-lg-3">
+    <div class="portrait-url-border">
+      <img class="portrait-url" src="<%= portrait_url %>" alt="portrait-url">
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row author-row">
+      <p id="searched-authorFN" class="author"><%= first_name %></p>
+      <p id="searched-authorLN" class="author"><%= last_name %></p>
+      <button type="button" class="btn btn-primary">Back</button>
+    </div>
+    <div class="row biography-row">
+      <p class="biography"><%= biography %></p>
+    </div>
+    <div class="row books-row">
+      <% for (title of book_titles) { %>
+      <p class="books"><%= title %></p>
+      <% } %>
+
+    </div>
+  </div>
+</div>
